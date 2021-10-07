@@ -26,6 +26,11 @@ public class LinkedStack<T> implements StackInterface<T>
       while (index < infix.length())
       {
          nextCharacter = infix.charAt(index);
+         if (Character.isSpaceChar(nextCharacter))
+         {
+            index++;
+            continue;
+         }
          if(Character.isLetter(nextCharacter) || Character.isDigit(nextCharacter))
          {
             postfix = postfix + nextCharacter;
