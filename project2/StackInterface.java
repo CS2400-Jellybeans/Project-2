@@ -1,3 +1,5 @@
+package project2;
+
 public interface StackInterface<T>
 {
    /** Adds a new entry to the top of this stack.
