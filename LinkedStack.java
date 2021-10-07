@@ -38,7 +38,7 @@ public class LinkedStack<T> implements StackInterface<T> {
       topNode = null;
    } // end clear
 
-   public String convertToPostfix(String infix)
+   public static String convertToPostfix(String infix)
    {
       LinkedStack<Character> operatorStack = new LinkedStack<Character>();
       String postfix = "";
@@ -48,7 +48,7 @@ public class LinkedStack<T> implements StackInterface<T> {
       while (index < infix.length())
       {
          nextCharacter = infix.charAt(index);
-         if(Character.isLetter(nextCharacter))
+         if(Character.isLetter(nextCharacter) || Character.isDigit(nextCharacter))
          {
             postfix = postfix + nextCharacter;
             index++;
@@ -90,7 +90,7 @@ public class LinkedStack<T> implements StackInterface<T> {
       }
       return postfix;
    }
-   private int getPrecedence(char operator)
+   private static int getPrecedence(char operator)
    {
       switch (operator)
       {
