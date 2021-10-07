@@ -1,3 +1,5 @@
+package project2;
+
 import java.util.EmptyStackException;
 import java.util.Arrays;
 

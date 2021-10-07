@@ -1,10 +1,13 @@
+package project2;
+
 import java.util.EmptyStackException;
 
 public class LinkedStack<T> implements StackInterface<T>
 {
    private Node topNode; // References the first node in the chain
 
-   public LinkedStack() {
+   public LinkedStack()
+   {
       topNode = null;
    } // end constructor
    
@@ -13,7 +16,8 @@ public class LinkedStack<T> implements StackInterface<T>
    * Adds a new entry to the top of the stack.
    * @param newEntry The item to add to the stack.
    */
-   public void push(T newEntry) {
+   public void push(T newEntry)
+   {
       Node newNode = new Node(newEntry, topNode);
       topNode = newNode;
    } // end push
@@ -23,7 +27,8 @@ public class LinkedStack<T> implements StackInterface<T>
    * Removes the item at the top of the stack.
    * @return The item that was removed.
    */
-   public T pop() {
+   public T pop()
+   {
       T top = peek(); // Might throw EmptyStackException
 
       // Assertion: topNode != null
@@ -34,9 +39,11 @@ public class LinkedStack<T> implements StackInterface<T>
 
    @Override
    /**
+   * @throws EmptyStackException If the stack is empty.
    * @return The item currently at the top of the stack.
    */
-   public T peek() {
+   public T peek()
+   {
       if (isEmpty())
          throw new EmptyStackException();
       else
@@ -48,7 +55,8 @@ public class LinkedStack<T> implements StackInterface<T>
    * Checks if the stack is currently empty.
    * @return True if the stack is empty. False otherwise.
    */
-   public boolean isEmpty() {
+   public boolean isEmpty()
+   {
       return topNode == null;
    } // end isEmpty
 
