@@ -70,7 +70,7 @@ public class LinkedStack<T> implements StackInterface<T>
    }
    
    /**
-    * Gets the precedence of the operator in question.
+   * Gets the precedence of the operator in question.
    * @param operator A character containing the operator in question.
    * @return 1 for addition and subtraction and 2 for multiplication and division.
    *         If the character is not a valid operator, return -1.
