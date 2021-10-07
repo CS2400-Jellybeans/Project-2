@@ -39,7 +39,7 @@ public class LinkedStack<T> implements StackInterface<T>
 
    @Override
    /**
-   * @throws EmptyStackException if the stack is empty.
+   * @throws EmptyStackException If the stack is empty.
    * @return The item currently at the top of the stack.
    */
    public T peek()
