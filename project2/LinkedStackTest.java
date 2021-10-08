@@ -4,7 +4,7 @@ public class LinkedStackTest
 {
    public static void main(String[] args)
    {
-      String[] infixExpressions = {"a + b", "a * c + b - (e - d)", "a * b / (c - a) + d * e"};
+      String[] infixExpressions = {"a+b", "a*c+b-(e-d)", "a*b/(c-a)+d*e"};
       testExpressions(infixExpressions);
    }
    private static void testExpressions(String[] expressions)

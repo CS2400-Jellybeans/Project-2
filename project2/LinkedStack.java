@@ -18,7 +18,7 @@ public class LinkedStack<T> implements StackInterface<T>
    */
    public static String convertToPostfix(String infix)
    {
-      LinkedStack<Character> operatorStack = new LinkedStack<Character>();
+      StackInterface<Character> operatorStack = new LinkedStack<Character>();
       String postfix = "";
       int index = 0;
       Character nextCharacter;
