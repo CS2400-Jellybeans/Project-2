@@ -105,6 +105,8 @@ public class LinkedStackTest
             return 1;
          case '*' : case '/' :
             return 2;
+         case '^':
+            return 3;
          default: break;
       }
       return -1;
