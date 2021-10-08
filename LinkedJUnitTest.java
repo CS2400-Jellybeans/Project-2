@@ -9,8 +9,8 @@ public class LinkedJUnitTest extends TestCase
    //Various assorted inputs and expected outputs.
    public void testConvertToPostfix()
    {
-      String[] infixExpressions = {"a+b", "a*c+b-(e-d)", "a*b/(c-a)+d*e"};
-      String[] expectedResults = {"ab+", "ac*b+ed--", "ab*ca-/de*+"};
+      String[] infixExpressions = {"a+b", "a^b-c+(a+d)^e", "a*b/(c-a)+d*e"};
+      String[] expectedResults = {"ab+", "ab^c-ad+e^+", "ab*ca-/de*+"};
       for(int i = 0; i < infixExpressions.length; i++)
       {
          assertEquals("test", expectedResults[i], LinkedStackTest.convertToPostfix(infixExpressions[i]));
