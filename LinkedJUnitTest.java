@@ -1,7 +1,7 @@
 import org.junit.Test;
 
 import junit.framework.TestCase;
-import project2.LinkedStack;
+import project2.LinkedStackTest;
 
 public class LinkedJUnitTest extends TestCase
 {
@@ -13,16 +13,26 @@ public class LinkedJUnitTest extends TestCase
       String[] expectedResults = {"ab+", "ac*b+ed--", "ab*ca-/de*+"};
       for(int i = 0; i < infixExpressions.length; i++)
       {
-         assertEquals("test", expectedResults[i], LinkedStack.convertToPostfix(infixExpressions[i]));
+         assertEquals("test", expectedResults[i], LinkedStackTest.convertToPostfix(infixExpressions[i]));
       }
    }
+
+   @Test
+   //Should be able to handle if null is passed into the method.
+   public void testNull()
+   {
+      String infixExpression = null;
+      String expectedResult = null;
+      assertEquals(expectedResult, LinkedStackTest.convertToPostfix(infixExpression));
+   }
+   
    @Test
    //Should be able to handle if the expression is blank.
    public void testEmpty()
    {
       String infixExpression = "";
       String expectedResult = "";
-      assertEquals(expectedResult, LinkedStack.convertToPostfix(infixExpression));
+      assertEquals(expectedResult, LinkedStackTest.convertToPostfix(infixExpression));
    }
 
    @Test
@@ -31,7 +41,7 @@ public class LinkedJUnitTest extends TestCase
    {
       String infixExpression = "a * b / (c - a) + d * e";
       String expectedResult = "ab*ca-/de*+";
-      assertEquals(expectedResult, LinkedStack.convertToPostfix(infixExpression));
+      assertEquals(expectedResult, LinkedStackTest.convertToPostfix(infixExpression));
    }
 
    @Test
@@ -40,7 +50,7 @@ public class LinkedJUnitTest extends TestCase
    {
       String infixExpression = "2*b/(c-2)+d*6";
       String expectedResult = "2b*c2-/d6*+";
-      assertEquals(expectedResult, LinkedStack.convertToPostfix(infixExpression));
+      assertEquals(expectedResult, LinkedStackTest.convertToPostfix(infixExpression));
    }
 
    @Test
@@ -49,6 +59,6 @@ public class LinkedJUnitTest extends TestCase
    {
       String infixExpression = "a*& b /#@(c-$a)+ ?d<* e!";
       String expectedResult = "ab*ca-/de*+";
-      assertEquals(expectedResult, LinkedStack.convertToPostfix(infixExpression));
+      assertEquals(expectedResult, LinkedStackTest.convertToPostfix(infixExpression));
    }
 }
