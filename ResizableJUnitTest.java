@@ -11,8 +11,8 @@ public class ResizableJUnitTest extends TestCase
    //Various assorted inputs and expected outputs.
    public void testEvaluatePostfix()
    {
-      String[] postfixExpressions = {"2 3*4 2-/5 6*+"};
-      String[] expectedResults = {"33"};
+      String[] postfixExpressions = {"2 3 +", "2 3^4-2 5+6^+", "2 3*4 2-/5 6*+"};
+      String[] expectedResults = {"5", "13", "33"};
       for(int i = 0; i < postfixExpressions.length; i++)
       {
          assertEquals(expectedResults[i], ArrayStackTest.evaluatePostfix(postfixExpressions[i]));
