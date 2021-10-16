@@ -21,7 +21,7 @@ public class ArrayStackTest
 
    /**
    * Takes a postfix expression and evaluates the result.
-   * @param expression The expression to be evaluated.
+   * @param postfix The postfix expression to be evaluated.
    * @return the integer value of the evaluated expression.
    */
    public static int evaluatePostfix(String postfix)
