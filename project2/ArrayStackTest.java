@@ -4,13 +4,12 @@ public class ArrayStackTest{
    public static void main(String[] args){
       String postfixExpression = "ab*ca-/de*+";
       testEvaluatePostfix(postfixExpression);
-
    }
    
    private static void testEvaluatePostfix(String expression) {
       System.out.println("Postfix expression: " + expression + " where a = 2, b = 3, c = 4, d = 5, e = 6");// 
       expression = "23*42-/56*+";
-      System.out.println(expression + " = " + evaluatePostfix(expression));
+      System.out.println("\nPostfix expression with variables substituted: " + expression + " = " + evaluatePostfix(expression));
    }
 
    public static int evaluatePostfix(String postfix)
@@ -21,66 +20,54 @@ public class ArrayStackTest{
          return -1;
       }
 
-      // Evaluates a postfix expression.
-      //valueStack = a new empty stack
       StackInterface<Integer> valueStack = new ResizableArrayStack<Integer>();
       char nextCharacter;
       int index = 0;
-      char operator = ' ';
 
       while (index < postfix.length())
       {
-         //nextCharacter = next nonblank character of postfix
          nextCharacter = postfix.charAt(index);
-  
-         if (nextCharacter == '%' || nextCharacter == '/' || nextCharacter == '*' || nextCharacter == '+' || nextCharacter == '-'){
-            operator = nextCharacter;
-         }
          if (Character.isSpaceChar(nextCharacter))
          {
             index++;
             continue;
          }
-         if(Character.isDigit(nextCharacter)){
+         else if(Character.isDigit(nextCharacter)){
             valueStack.push(Character.getNumericValue(nextCharacter));
+            index++;
             continue;
-         }
-         switch (nextCharacter){
-            case '+' : case '-' : case '*' : case '/' : case '^' :
-               int operandTwo = valueStack.pop();
-               int operandOne = valueStack.pop();
-/**int operandTwo = Character.getNumericValue(valueStack.pop());
-               int operandOne = Character.getNumericValue(valueStack.pop()); */
-
-               int result = 0;
-               switch(operator) {
-                  case '+' : 
-                     result = operandOne + operandTwo;
+         } 
+         else {
+            int operandTwo = valueStack.pop();
+            int operandOne = valueStack.pop();
+            int result = 0;
+            switch (nextCharacter){
+               case '+' : 
+                  result = operandOne + operandTwo;
+                  break;
+               case '-' : 
+                  result = operandOne - operandTwo;
+                  break;
+               case '*' : 
+                  result = operandOne * operandTwo;
+                  break;
+               case '/' : 
+                  try {
+                     result = operandOne / operandTwo; 
+                  }
+                  catch (ArithmeticException e) {      // throw Exception
+                     System.out.println("Error: attempting to divide by zero");
+                  }
                      break;
-                  case '-' : 
-                     result = operandOne - operandTwo;
-                     break;
-                  case '*' : 
-                     result = operandOne * operandTwo;
-                     break;
-                  case '/' : 
-                     try {
-                        System.out.println(operandOne / operandTwo); // throw Exception
-                     }
-                     catch (ArithmeticException e) {
-                        System.out.println("Error: attempting to divide by zero");
-                     }
-                     break;
-                  case '^' : 
-                     result = (int)Math.pow(operandOne,operandTwo);
-                     break;
-               }
-               valueStack.push(result);
-               break;
-            default: 
-               break; // Ignore unexpected characters
-         }
+               case '^' : 
+                  result = (int)Math.pow(operandOne,operandTwo);
+                  break;
+               default: 
+                  break; // Ignore unexpected characters
+            }
+         valueStack.push(result);
          index++;
+         }
       }
       return valueStack.peek();
    }
