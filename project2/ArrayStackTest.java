@@ -1,22 +1,39 @@
 package project2;
 
-public class ArrayStackTest{
-   public static void main(String[] args){
+public class ArrayStackTest
+{
+   public static void main(String[] args)
+   {
       String postfixExpression = "ab*ca-/de*+";
       testEvaluatePostfix(postfixExpression);
    }
-   
-   private static void testEvaluatePostfix(String expression) {
-      System.out.println("Postfix expression: " + expression + " where a = 2, b = 3, c = 4, d = 5, e = 6");// 
+
+   /**
+   * Evaluates the given postfix expression and displays the results in a more readable fashion.
+   * @param expression The expression to be evaluated.
+   */
+   private static void testEvaluatePostfix(String expression)
+   {
+      System.out.println("Postfix expression: " + expression + " where a = 2, b = 3, c = 4, d = 5, e = 6");
       expression = "23*42-/56*+";
       System.out.println("\nPostfix expression with variables substituted: " + expression + " = " + evaluatePostfix(expression));
    }
 
+   /**
+   * Takes a postfix expression and evaluates the result.
+   * @param expression The expression to be evaluated.
+   * @return the integer value of the evaluated expression.
+   */
    public static int evaluatePostfix(String postfix)
    {
       if(postfix == null)
       {
          System.out.println("Error: Postfix expression is null.");
+         return -1;
+      }
+      if(postfix == "")
+      {
+         System.out.println("Error: Postfix expression is empty.");
          return -1;
       }
 
@@ -63,7 +80,10 @@ public class ArrayStackTest{
                   result = (int)Math.pow(operandOne,operandTwo);
                   break;
                default: 
-                  break; // Ignore unexpected characters
+                  index++;
+                  valueStack.push(operandOne);
+                  valueStack.push(operandTwo);
+                  continue; // Ignore unexpected characters and restore the stack
             }
          valueStack.push(result);
          index++;

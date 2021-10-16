@@ -1,4 +1,6 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThrows;
+
+import java.util.EmptyStackException;
 
 import org.junit.Test;
 
@@ -11,8 +13,8 @@ public class ResizableJUnitTest extends TestCase
    //Various assorted inputs and expected outputs.
    public void testEvaluatePostfix()
    {
-      String[] postfixExpressions = {"2 3 +", "2 3^4-2 5+6^+", "2 3*4 2-/5 6*+"};
-      String[] expectedResults = {"5", "13", "33"};
+      String[] postfixExpressions = {"23+", "23^4-25+6^+", "23*42-/56*+"};
+      int[] expectedResults = {5, 117653, 33};
       for(int i = 0; i < postfixExpressions.length; i++)
       {
          assertEquals(expectedResults[i], ArrayStackTest.evaluatePostfix(postfixExpressions[i]));
@@ -24,8 +26,8 @@ public class ResizableJUnitTest extends TestCase
    public void testNull()
    {
       String postfixExpression = null;
-      String expectedResult = null;
-      assertEquals(expectedResult, ArrayStackTest.evaluatePostfix((postfixExpression));
+      int expectedResult = -1;
+      assertEquals(expectedResult, ArrayStackTest.evaluatePostfix((postfixExpression)));
    }
    
    @Test
@@ -33,16 +35,25 @@ public class ResizableJUnitTest extends TestCase
    public void testEmpty()
    {
       String postfixExpression = "";
-      String expectedResult = "";
-      assertEquals(expectedResult, ArrayStackTest.evaluatePostfix((postfixExpression));
+      int expectedResult = -1;
+      assertEquals(expectedResult, ArrayStackTest.evaluatePostfix((postfixExpression)));
    }
 
    @Test
-   //Should be able to handle if the expression has invalid operators mixed in.
-   public void testWithInvalids()
+   //Should be able to handle if the expression has unexpected characters.
+   //Note that the format must still be valid.
+   public void testUnexpected()
    {
-      String postfixExpression = "!2 3#*4 2$%-/5 &6*+$";
-      String expectedResult = "33";
-      assertEquals(expectedResult, ArrayStackTest.evaluatePostfix((postfixExpression));
+      String postfixExpression = "23@*42-&/56!*#+";
+      int expectedResult = 33;
+      assertEquals(expectedResult, ArrayStackTest.evaluatePostfix((postfixExpression)));
+   }
+   
+   @Test
+   //Should throw an EmptyStackException if the postfix expression does not make sense.
+   public void testInvalids()
+   {
+      String postfixExpression = "5+*";
+      assertThrows(EmptyStackException.class, () -> {ArrayStackTest.evaluatePostfix((postfixExpression));});
    }
 }
