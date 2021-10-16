@@ -65,9 +65,9 @@ public class ArrayStackTest{
                      break;
                   case '/' : 
                      try {
-                        System.out.println(operandOne / operandTwo); // throw Exception
+                        result = operandOne / operandTwo; 
                      }
-                     catch (ArithmeticException e) {
+                     catch (ArithmeticException e) {         // throw Exception
                         System.out.println("Error: attempting to divide by zero");
                      }
                      break;
