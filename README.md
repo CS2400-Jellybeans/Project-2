@@ -1,11 +1,11 @@
 # Project-2
 ## Contributions
-##### Jana Georgievski
+##### Jana Georgievski (pesimelaki1)
 + Manually calculated postfix expression (Task 4)
 + Wrote evaluatePostfix method (Task 5)
 + Wrote ArrayStackTest.java (Task 6)
 + Edited together video
-##### Joshua Lai
+##### Joshua Lai (OrbinWaffle)
 + Wrote LinkedStack.java and ResizableArrayStack.java
 + Manually converted infix expression to postfix (Task 1)
 + Wrote convertToPostfix method (Task 2)
